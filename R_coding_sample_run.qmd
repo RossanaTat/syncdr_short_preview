@@ -1,0 +1,71 @@
+---
+title: "Intro to {syncdr}"
+format: html
+editor: visual
+---
+
+## Introduction to {syncdr}
+
+This document provides a short version overview of the {syncdr} R package, demonstrating some of its key functionalities for synchronizing directories. {syncdr} offers a range of tools for managing file synchronization efficiently —this is just a small preview.  
+Since the code in the sample comes from an R package and isn't runnable on its own, this guide serves as a practical example to showcase the functions in action without requiring you to run it yourself. For more details For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/).
+
+
+### Installation
+
+To install {syncdr} from GitHub, use:
+
+```{r installation}
+#devtools::install_github("RossanaTat/syncdr")
+
+```
+
+```{r loading}
+library(syncdr)
+```
+
+### Usage Example
+
+#### Setup: Creating Toy Directories
+
+To illustrate how {syncdr} works, we'll generate example directories:
+
+```{r setup}
+
+# Load {syncdr}
+library(syncdr)
+
+# Create toy directories and initialize .syncdrenv
+.syncdrenv <- toy_dirs()
+
+# Extract paths to left and right directories
+left  <- .syncdrenv$left
+right <- .syncdrenv$right
+
+# Display directory structures
+display_dir_tree(path_left  = left,
+                 path_right = right)
+
+
+```
+
+*Step 1: Compare Directory Synchronization Status*
+
+We first check the differences between the two directories:
+
+```{r}
+compare_directories(left_path  = left,
+                    right_path = right)
+```
+
+*Step 2: Perform Synchronization*
+
+Now, we perform an asymmetric synchronization from left to right. This means files present in the left directory but missing in the right will be copied over, without modifying files in the left directory:
+
+```{r}
+full_asym_sync_to_right(left_path   = left,
+                         right_path = right,
+                         force      = FALSE)
+
+```
+
+
