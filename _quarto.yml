@@ -1,0 +1,10 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Intro to {syncdr}"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
