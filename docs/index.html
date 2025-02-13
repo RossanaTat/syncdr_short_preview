@@ -150,8 +150,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introduction-to-syncdr" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-syncdr">Introduction to {syncdr}</h2>
 <p>This document provides a short version overview of the {syncdr} R package, demonstrating some of its key functionalities for synchronizing directories. {syncdr} offers a range of tools for managing file synchronization efficiently —this is just a small preview.<br>
 Since the code in the sample comes from an R package and isn’t runnable on its own, this guide serves as a practical example to showcase the functions in action without requiring you to run it yourself. For more details For more details, visit the <a href="https://rossanatat.github.io/syncdr/">official {syncdr} website</a>.</p>
 <section id="installation" class="level3">
@@ -176,10 +174,10 @@ Since the code in the sample comes from an R package and isn’t runnable on its
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy directories and initialize .syncdrenv</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>.syncdrenv <span class="ot">&lt;-</span> <span class="fu">toy_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■                         27% | ETA:  9s</code></pre>
+<pre><code>■■■■■■■                           20% | ETA:  8s</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■■■■■■■■■■■               60% | ETA:  6s</code></pre>
+<pre><code>■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA:  1s</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract paths to left and right directories</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>left  <span class="ot">&lt;-</span> .syncdrenv<span class="sc">$</span>left</span>
@@ -190,7 +188,7 @@ Since the code in the sample comes from an R package and isn’t runnable on its
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path_right =</span> right)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(←)Left directory structure:
-C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/left
+C:/Users/wb621604/AppData/Local/Temp/RtmpIJFwxs/left
 ├── A
 │   ├── A1.Rds
 │   ├── A2.Rds
@@ -208,7 +206,7 @@ C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/left
 │   └── D2.Rds
 └── E
 (→)Right directory structure:
-C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/right
+C:/Users/wb621604/AppData/Local/Temp/RtmpIJFwxs/right
 ├── A
 ├── B
 │   ├── B1.Rds
@@ -240,10 +238,10 @@ C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/right
 <pre><code>── Synchronization Summary ─────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/left'</code></pre>
+<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpIJFwxs/left'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/right'</code></pre>
+<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpIJFwxs/right'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Total Common Files: 7</code></pre>
@@ -262,13 +260,13 @@ C:/Users/wb621604/AppData/Local/Temp/Rtmpuy1bmt/right
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            path modification_time_left modification_time_right  modified
-1 /left/B/B1.Rds    2025-02-13 12:03:40     2025-02-13 12:03:41     right
-2 /left/B/B2.Rds    2025-02-13 12:03:43     2025-02-13 12:03:45     right
-3 /left/C/C1.Rds    2025-02-13 12:03:41     2025-02-13 12:03:41 same date
-4 /left/C/C2.Rds    2025-02-13 12:03:45     2025-02-13 12:03:46     right
-5 /left/C/C3.Rds    2025-02-13 12:03:47     2025-02-13 12:03:48     right
-6 /left/D/D1.Rds    2025-02-13 12:03:43     2025-02-13 12:03:42      left
-7 /left/D/D2.Rds    2025-02-13 12:03:47     2025-02-13 12:03:46      left</code></pre>
+1 /left/B/B1.Rds    2025-02-13 12:09:32     2025-02-13 12:09:33     right
+2 /left/B/B2.Rds    2025-02-13 12:09:35     2025-02-13 12:09:36     right
+3 /left/C/C1.Rds    2025-02-13 12:09:33     2025-02-13 12:09:33 same date
+4 /left/C/C2.Rds    2025-02-13 12:09:36     2025-02-13 12:09:37     right
+5 /left/C/C3.Rds    2025-02-13 12:09:38     2025-02-13 12:09:39     right
+6 /left/D/D1.Rds    2025-02-13 12:09:35     2025-02-13 12:09:34      left
+7 /left/D/D2.Rds    2025-02-13 12:09:38     2025-02-13 12:09:37      left</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -341,7 +339,6 @@ Do you want to proceed? Type your answer (Yes/no/cancel)
 </div>
 
 
-</section>
 </section>
 </section>
 

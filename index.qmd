@@ -4,11 +4,8 @@ format: html
 editor: visual
 ---
 
-## Introduction to {syncdr}
-
-This document provides a short version overview of the {syncdr} R package, demonstrating some of its key functionalities for synchronizing directories. {syncdr} offers a range of tools for managing file synchronization efficiently —this is just a small preview.  
+This document provides a short version overview of the {syncdr} R package, demonstrating some of its key functionalities for synchronizing directories. {syncdr} offers a range of tools for managing file synchronization efficiently —this is just a small preview.\
 Since the code in the sample comes from an R package and isn't runnable on its own, this guide serves as a practical example to showcase the functions in action without requiring you to run it yourself. For more details For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/).
-
 
 ### Installation
 
@@ -67,5 +64,3 @@ full_asym_sync_to_right(left_path   = left,
                          force      = FALSE)
 
 ```
-
-
