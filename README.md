@@ -1,1 +1,0 @@
-# syncdr_short_preview
