@@ -1,10 +1,17 @@
-project:
-  type: website
-  output-dir: docs
-
 website:
   title: "Intro to {syncdr}"
   navbar:
+    background: primary  # Change the background color (e.g., "primary", "dark", "light")
+    foreground: white  # Text color
     left:
       - href: index.qmd
         text: Home
+      - href: installation.qmd
+        text: Installation
+      - href: usage.qmd
+        text: Usage
+    right:
+      - icon: github
+        href: https://github.com/RossanaTat/syncdr
+      - icon: globe
+        href: https://rossanatat.github.io/syncdr/
