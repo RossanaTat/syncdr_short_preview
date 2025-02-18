@@ -15,3 +15,5 @@ website:
         href: https://github.com/RossanaTat/syncdr
       - icon: globe
         href: https://rossanatat.github.io/syncdr/
+project:
+  output-dir: docs

@@ -551,10 +551,10 @@ Since the code in the sample comes from an R package and isn’t runnable on its
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy directories and initialize .syncdrenv</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>.syncdrenv <span class="ot">&lt;-</span> <span class="fu">toy_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■                         27% | ETA:  9s</code></pre>
+<pre><code>■■■■■■■■■■■■■■■                   47% | ETA:  5s</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■■■■■■■■■■■               60% | ETA:  6s</code></pre>
+<pre><code>■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA:  1s</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract paths to left and right directories</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>left  <span class="ot">&lt;-</span> .syncdrenv<span class="sc">$</span>left</span>
@@ -565,7 +565,7 @@ Since the code in the sample comes from an R package and isn’t runnable on its
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path_right =</span> right)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(←)Left directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/left
+C:/Users/wb621604/AppData/Local/Temp/RtmpGCnG3U/left
 ├── A
 │   ├── A1.Rds
 │   ├── A2.Rds
@@ -583,7 +583,7 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/left
 │   └── D2.Rds
 └── E
 (→)Right directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/right
+C:/Users/wb621604/AppData/Local/Temp/RtmpGCnG3U/right
 ├── A
 ├── B
 │   ├── B1.Rds
@@ -615,10 +615,10 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/right
 <pre><code>── Synchronization Summary ─────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/left'</code></pre>
+<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpGCnG3U/left'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/right'</code></pre>
+<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpGCnG3U/right'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Total Common Files: 7</code></pre>
@@ -637,13 +637,13 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpULs76t/right
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            path modification_time_left modification_time_right  modified
-1 /left/B/B1.Rds    2025-02-17 20:42:56     2025-02-17 20:42:57     right
-2 /left/B/B2.Rds    2025-02-17 20:42:59     2025-02-17 20:43:00     right
-3 /left/C/C1.Rds    2025-02-17 20:42:57     2025-02-17 20:42:57 same date
-4 /left/C/C2.Rds    2025-02-17 20:43:00     2025-02-17 20:43:01     right
-5 /left/C/C3.Rds    2025-02-17 20:43:03     2025-02-17 20:43:04     right
-6 /left/D/D1.Rds    2025-02-17 20:42:59     2025-02-17 20:42:58      left
-7 /left/D/D2.Rds    2025-02-17 20:43:03     2025-02-17 20:43:01      left</code></pre>
+1 /left/B/B1.Rds    2025-02-17 20:48:50     2025-02-17 20:48:51     right
+2 /left/B/B2.Rds    2025-02-17 20:48:53     2025-02-17 20:48:54     right
+3 /left/C/C1.Rds    2025-02-17 20:48:51     2025-02-17 20:48:51 same date
+4 /left/C/C2.Rds    2025-02-17 20:48:54     2025-02-17 20:48:55     right
+5 /left/C/C3.Rds    2025-02-17 20:48:56     2025-02-17 20:48:57     right
+6 /left/D/D1.Rds    2025-02-17 20:48:53     2025-02-17 20:48:52      left
+7 /left/D/D2.Rds    2025-02-17 20:48:56     2025-02-17 20:48:55      left</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
