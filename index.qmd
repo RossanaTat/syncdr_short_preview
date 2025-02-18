@@ -1,44 +1,62 @@
 ---
 title: "Introduction to {syncdr}"
-format: html
+format:
+  html:
+    code-fold: false
+    code-line-numbers: false
+    code-overflow: wrap
+    code-width: 170
 author: "Rossana Tatulli"
-date: "2025-02-17"
+date: "2025-02-18"
 editor: visual
 ---
 
-# ET Consultant Application - Development Indicators and Data (DECID)
+# ET Consultant Application - (DECID)
 
 ## Coding sample
+
+The code provided below is extracted from an R package -{syncdr}- I developed to facilitate file handling, directory comparison, and synchronization.
+Please note that this document offers a brief overview of the {syncdr} R package, highlighting some of its key functionalities for directory synchronization. {syncdr} includes a wide range of tools designed to manage file synchronization efficiently. Since the code in this sample is not runnable on its own, this document also includes an "Output" section, which serves as a practical example to demonstrate the functions in action without requiring you to run the code yourself. For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/), which I developed alongside the package itself. 
 
 ```{r, eval=FALSE}
 
 #' Compare Two Directories for Synchronization Status
 #'
-#' This function compares two directories, typically referred to as 'left' and 'right', to determine their synchronization status at the file level.
-#' The primary goal is to identify the synchronization status of files present in both directories and those exclusive to either directory.
+#' This function compares two directories, typically referred to as 'left' and 'right', 
+#' to determine their synchronization status at the file level.
+#' The primary goal is to identify the synchronization status of files present 
+#' in both directories and those exclusive to either directory.
 #'
 #'
 #' @section Sync Status Types:
-#' The synchronization status is determined for files present in both directories, as well as for files exclusive to either directory.
+#' The synchronization status is determined for files present in both directories, 
+#' as well as  for files exclusive to either directory.
 #' It can be computed based on modification date only, content only, or both.
 #'
 #' For Common Files:
 #' * When comparing by date: 'new', 'old', or 'same'.
-#' * When comparing by date and content: 'new and different', 'new and same', 'old and different', 'old and same', 'same and different', or 'same and same'.
+#' * When comparing by date and content: 'new and different', 'new and same', 
+#'   'old and different', 'old and same', 'same and different', or 'same and same'.
 #' * When comparing by content only: 'different' or 'same'.
 #'
 #' For Non-Common Files:
-#' * When comparing by date (or by date and content, or by content only): 'only in left' or 'only in right'.
+#' * When comparing by date (or by date and content, or by content only): 
+#' 'only in left' or 'only in right'.
 #'
 #' @param left_path Path to the left/first directory.
 #' @param right_path Path to the right/second directory.
-#' @param by_date Logical. If TRUE (default), compares directories based on the modification date of common files.
-#' @param by_content Logical. If TRUE, compares directories based on the hashed content of common files. Default is FALSE
-#' @param recurse If TRUE, fully recurses through subdirectories. If a positive integer, specifies the number of levels to recurse.
-#' @param verbose Logical. If TRUE display additional info on the comparison process. Default is FALSE
+#' @param by_date Logical. If TRUE (default), compares directories based on 
+#' the modification date of common files.
+#' @param by_content Logical. If TRUE, compares directories based on the hashed 
+#' content of common files. Default is FALSE
+#' @param recurse If TRUE, fully recurses through subdirectories. 
+#' If a positive integer, specifies the number of levels to recurse.
+#' @param verbose Logical. If TRUE display additional info on the comparison process. 
+#' Default is FALSE
 #'
 #' @return A list of class "syncdr_status" containing the following elements:
-#'   - Non-common files: Paths and synchronization status of files exclusive to either directory.
+#'   - Non-common files: Paths and synchronization status of files exclusive 
+#' to either directory.
 #'   - Common files: Paths and synchronization status of files present in both directories.
 #'   - Path of the left directory.
 #'   - Path of the right directory.
@@ -162,7 +180,8 @@ compare_directories <- function(left_path,
 
 #' Display status of synchronization/comparison info between two directories in DT table
 #'
-#' @param sync_status_files object of `compare_directories()` output, either common_files or non_common_files
+#' @param sync_status_files object of `compare_directories()` output, 
+#' either common_files or non_common_files
 #' @param left_path A character string specifying the path to left directory.
 #' @param right_path A character string specifying the path to right directory.
 #' @return DT table showing the comparison between the two directories
@@ -217,88 +236,105 @@ display_sync_status <- function(sync_status_files,
 
 ```{r, eval=FALSE}
 
-#' Full symmetric synchronization
+#' Full asymmetric synchronization to right directory
 #'
-#' This function updates directories in the following way:
+#' This function performs a full asymmetric synchronization of the right directory
+#' based on the left directory. It includes the following synchronization steps 
+#' (see Details below):
+#'
 #' * For common files:
-#'   - if by date: If the file in one directory is newer than the corresponding file in the other directory,
-#'                 it will be copied over to update the older version. If modification dates are the same, no action is taken
-#'   - if by date and content: If the file in one directory is newer AND different than the corresponding file in the other directory,
-#'                             it will be copied over to update the older version. If modification dates/contents are the same, no action is taken
-#'   - if by content only: this option is not active
-#' * For non common files:
-#'   - if a file exists in one but not in the other it is copied to the other directory
+#'   - If comparing by date only (`by_date = TRUE`): Copy files that are newer in 
+#'   the left directory to the right directory.
+#'   - If comparing by date and content (`by_date = TRUE` and `by_content = TRUE`): Copy files
+#'   that are newer and different in the left directory to the right directory.
+#'   - If comparing by content only (`by_content = TRUE`): Copy files that are different in the
+#'   left directory to the right directory.
+#' * Copy to the right directory those files that exist only in the left directory.
+#' * Delete from the right directory those files that are exclusive in the right directory
+#' (i.e., missing in the left directory)
 #'
 #' @param left_path Path to the left/first directory.
 #' @param right_path Path to the right/second directory.
 #' @param sync_status Object of class "syncdr_status", output of `compare_directories()`.
-#' @param by_date logical, TRUE by default
-#' @param by_content logical, FALSE by default
-#' @param recurse logical, TRUE by default.
-#'  If recurse is TRUE: when copying a file from source folder to destination folder, the file will be copied into the corresponding (sub)directory.
-#'  If the sub(directory) where the file is located does not exist in destination folder (or you are not sure), set recurse to FALSE,
-#'  and the file will be copied at the top level
-#' @param force Logical. If TRUE (by default), directly perform synchronization of the directories.
-#'                       If FALSE, displays a preview of actions and prompts the user for confirmation before proceeding. Synchronization is aborted if the user does not agree.
-#' @param backup Logical. If TRUE, creates a backup of the right directory before synchronization. The backup is stored in the location specified by `backup_dir`.
-#' @param backup_dir Path to the directory where the backup of the original right directory will be stored. If not specified, the backup is stored in temporary directory (`tempdir`).
-#' @param verbose logical. If TRUE, display directory tree before and after synchronization. Default is FALSE
+#' @param by_date Logical. If TRUE, synchronize based on file modification dates 
+#' (default is TRUE).
+#' @param by_content Logical. If TRUE, synchronize based on file contents (default is FALSE).
+#' @param recurse Logical. If TRUE (default), files are copied to corresponding subdirectories
+#'                in the destination folder. 
+#'                If FALSE, files are copied to the top level of the destination folder
+#'                without creating subdirectories if they do not exist.
+#' @param force Logical. If TRUE (by default), 
+#' directly perform synchronization of the directories. If FALSE, Displays a preview of actions
+#' and prompts the user for confirmation before proceeding. 
+#  Synchronization is aborted if the user does not agree.
+#' @param backup Logical. If TRUE, creates a backup of the right directory before
+#' synchronization. The backup is stored in the location specified by `backup_dir`.
+#' @param backup_dir Path to the directory where the backup of the original right 
+#' directory will be stored. If not specified, the backup is stored in temporary directory 
+#' @param verbose logical. If TRUE, display directory tree before and after synchronization.
+#' Default is FALSE
 #' @return Invisible TRUE indicating successful synchronization.
+#'
 #' @export
 #' @examples
 #' # Create syncdr environment with toy directories
+#' library(syncdr)
 #' e <- toy_dirs()
 #'
 #' # Get left and right directories' paths
 #' left  <- e$left
 #' right <- e$right
 #'
-#' # Synchronize directories, e.g., by date and content
-#' # Option 1 - providing left and right paths
-#' full_symmetric_sync(left_path  = left,
-#'                     right_path = right,
-#'                     by_date    = TRUE,
-#'                     by_content = TRUE)
-#' # Option 2 - Providing sync_status object
-#' sync_status = compare_directories(left_path  = left,
-#'                                   right_path = right)
-#' full_symmetric_sync(sync_status = sync_status)
-full_symmetric_sync <- function(left_path   = NULL,
-                                right_path  = NULL,
-                                sync_status = NULL,
-                                by_date     = TRUE,
-                                by_content  = FALSE,
-                                recurse     = TRUE,
-                                force       = TRUE,
-                                backup      = FALSE,
-                                backup_dir  = "temp_dir",
-                                verbose     = getOption("syncdr.verbose")) {
+#' # Synchronize by date & content
+#' # Providing left and right paths to directories, as well as by_date and content
+#' full_asym_sync_to_right(left_path  = left,
+#'                         right_path = right,
+#'                         by_date    = FALSE,
+#'                         by_content = TRUE)
+#' # Providing sync_status object
+#' #sync_status = compare_directories(left_path = left,
+#' #                                   right_path = right)
+#' #full_asym_sync_to_right(sync_status = sync_status)
+full_asym_sync_to_right <- function(left_path   = NULL,
+                                    right_path  = NULL,
+                                    sync_status = NULL,
+                                    by_date     = TRUE,
+                                    by_content  = FALSE,
+                                    recurse     = TRUE,
+                                    force       = TRUE,
+                                    backup      = FALSE,
+                                    backup_dir  = "temp_dir",
+                                    verbose     = getOption("syncdr.verbose")) {
+
+  # --- Step 1: Display directory structure before synchronization ----
   if (verbose == TRUE) {
-    # Display the directory structure before synchronization
+
+    # Display message about pre-synchronization directory structure
     style_msgs(color_name = "blue",
-               text       = "Directories structure BEFORE synchronization:\n")
+               text = "Directories structure BEFORE synchronization:\n")
+
+    # Display the actual directory structure of both left and right directories
     display_dir_tree(path_left  = left_path,
                      path_right = right_path)
   }
 
-  # --- Validate input arguments ---
-
-  # Ensure that either:
-  # 1. Both left_path and right_path are provided, and sync_status is NULL
-  # 2. sync_status is provided, and left_path and right_path are NULL
-  if (!(
+  # --- Step 2: Check validity of arguments ----
+  # Ensure correct combination of inputs
+  if(!(
     is.null(sync_status) && !is.null(left_path) && !is.null(right_path) ||
-    !is.null(sync_status) && is.null(left_path) && is.null(right_path)
-  )) {
+       !is.null(sync_status) && is.null(left_path) && is.null(right_path)
+    )) {
+
     style_msgs(color_name = "purple",
-               text       = "Incorrect arguments specification!\n")
+               text = "Incorrect arguments specification!\n")
+
     cli::cli_abort("Either sync_status or left and right paths must be provided")
   }
 
-  # --- Retrieve or generate sync_status ---
+  # --- Step 3: Generate sync_status object if not provided ----
+  if(is.null(sync_status)) {
 
-  if (is.null(sync_status)) {
-    # Validate that the provided directory paths exist
+    # Validate that both left and right paths exist
     stopifnot(exprs = {
       fs::dir_exists(left_path)
       fs::dir_exists(right_path)
@@ -310,139 +346,129 @@ full_symmetric_sync <- function(left_path   = NULL,
                                        by_date    = by_date,
                                        by_content = by_content,
                                        recurse    = recurse,
-                                       verbose    = FALSE)
+                                       verbose    = FALSE
+    )
   } else {
-    # Extract synchronization parameters from sync_status
+
+    # If sync_status is already available, retrieve the paths and options from it
     left_path  <- sync_status$left_path
     right_path <- sync_status$right_path
 
-    # Determine whether to compare by date or content
+    # Assign options based on sync_status (if available)
     by_date    <- fifelse(is.null(sync_status$common_files$is_new_right),
-                          FALSE,
-                          by_date)
+                           FALSE,
+                           by_date)
     by_content <- fifelse(!(is.null(sync_status$common_files$is_diff)),
                           TRUE,
                           by_content)
   }
 
-  # --- Identify files for synchronization ---
+  # --- Step 4: Backup if requested ----
+  if (backup) {
+    # Determine where to store backup (temporary directory if not specified)
+    backup_dir <- fifelse(backup_dir == "temp_dir", 
+                          file.path(tempdir(), "backup_directory"),
+                          backup_dir)
 
-  # Files to copy from left to right:
-  files_to_right <- sync_status$common_files |>
+    # Create the backup directory if it doesn't exist
+    if (!dir.exists(backup_dir)) {
+      dir.create(backup_dir, recursive = TRUE)
+    }
+
+    # Copy the contents of the right directory to the backup location
+    file.copy(from      = right_path,
+              to        = backup_dir,
+              recursive = TRUE)
+  }
+
+  # --- Step 5: Identify files to copy, delete, or move ----
+
+  # Files to copy from common files based on the sync criteria (date/content)
+  files_to_copy <- sync_status$common_files |>
     filter_common_files(by_date    = by_date,
                         by_content = by_content,
-                        dir = "left") |>
+                        dir = "left")
+
+  # Add files only in the left directory (non-common files)
+  files_to_copy <- files_to_copy |>
     rowbind(
       filter_non_common_files(sync_status$non_common_files,
                               dir = "left")
     )
 
-  # Files to copy from right to left:
-  files_to_left <- sync_status$common_files |>
-    filter_common_files(by_date    = by_date,
-                        by_content = by_content,
-                        dir = "right") |>
-    rowbind(
-      filter_non_common_files(sync_status$non_common_files,
-                              dir = "right")
-    )
+  # Files to delete from the right directory (exclusive to right)
+  files_to_delete <- sync_status$non_common_files |>
+    filter_non_common_files(dir = "right") |>
+    fselect(path_right)
 
-  # --- User confirmation (if force = FALSE) ---
-
+  # --- Step 6: Preview synchronization if force = FALSE ----
   if (force == FALSE) {
-    if (nrow(files_to_right) > 0) {
-      style_msgs("blue",
-                 text = "These files will be COPIED (overwriting if present) to RIGHT \n")
-      display_file_actions(path_to_files = files_to_right |> fselect(1),
-                           directory     = left_path,
-                           action        = "copy")
-    }
 
-    if (nrow(files_to_left) > 0) {
-      style_msgs("blue",
-                 text = "These files will be COPIED (overwriting if present) to LEFT \n")
-      display_file_actions(path_to_files = files_to_left |> fselect(2),
+    # Display files that will be deleted from the right directory
+    if (nrow(files_to_delete) > 0 ) {
+      style_msgs("orange",
+                 text = "These files will be DELETED in right")
+
+      display_file_actions(path_to_files = files_to_delete,
                            directory     = right_path,
-                           action        = "copy")
+                           action        = "delete"
+      )
     }
 
-    # Ask the user for confirmation before proceeding
+    # Display files that will be copied to the right directory
+    if (nrow(files_to_copy) > 0 ) {
+      style_msgs("blue",
+                 text = "These files will be COPIED (overwriting if present) to right \n")
+      display_file_actions(path_to_files = files_to_copy |> fselect(1),
+                           directory     = left_path,
+                           action        = "copy"
+      )
+    }
+
+    # Ask for user confirmation to proceed with synchronization
     Ask <- askYesNo(msg     = "Do you want to proceed? Type your answer",
                     default = TRUE,
                     prompts = c("Yes", "No", "Cancel"))
 
+    # Abort if the user does not agree
     if (Ask == FALSE | is.na(Ask)) {
-      cli::cli_abort("Synchronization interrupted. No action taken on directories")
+      cli::cli_abort(message = "Synchronization interrupted. No action taken on directories")
     }
   }
 
-  # --- Backup directories (if enabled) ---
-
-  if (backup) {
-    backup_right <- fifelse(backup_dir == "temp_dir",
-                            file.path(tempdir(), "backup_right"),
-                            backup_dir)
-    backup_left <- fifelse(backup_dir == "temp_dir",
-                           file.path(tempdir(), "backup_left"),
-                           backup_dir)
-
-    # Create backup directories if they don't exist
-    if (!dir.exists(backup_right)) {
-      dir.create(backup_right, recursive = TRUE)
-    }
-    if (!dir.exists(backup_left)) {
-      dir.create(backup_left, recursive = TRUE)
-    }
-
-    # Copy the contents of both directories to the backup locations
-    file.copy(from = right_path, to = backup_right, recursive = TRUE)
-    file.copy(from = left_path, to = backup_left, recursive = TRUE)
-  }
-
-  # --- Handle case where sync by content only is not active ---
-  if (by_date == FALSE & by_content == TRUE) {
-    cli::cli_abort("Symmetric synchronization by content only is not active - no action will be executed, directories unchanged")
-  }
-
-  # --- Perform the synchronization ---
-
-  # Copy files from left to right directory
+  # --- Step 7: Perform synchronization ----
+  ## Copy files from left to right
   copy_files_to_right(left_dir      = sync_status$left_path,
                       right_dir     = sync_status$right_path,
-                      files_to_copy = files_to_right)
+                      files_to_copy = files_to_copy,
+                      recurse       = recurse)
 
-  # Copy files from right to left directory
-  copy_files_to_left(left_dir      = sync_status$left_path,
-                     right_dir     = sync_status$right_path,
-                     files_to_copy = files_to_left,
-                     recurse       = recurse)
+  ## Delete files from the right directory
+  fs::file_delete(files_to_delete$path_right)
 
-  if (verbose == TRUE) {
-    # Display the directory structure after synchronization
+  # --- Step 8: Display directory structure after synchronization ----
+  if(verbose == TRUE) {
+
     style_msgs(color_name = "blue",
-               text       = "Directories structure AFTER synchronization:\n")
+               text = "Directories structure AFTER synchronization:\n")
     display_dir_tree(path_left  = left_path,
                      path_right = right_path)
+
   }
 
-  # Indicate that synchronization was successful
+  # --- Final message indicating success ----
   style_msgs(color_name = "green",
-             text       = paste0("\u2714", " synchronized\n"))
+             text = paste0("\u2714", " synchronized\n"))
 
+  # Return invisible TRUE indicating successful synchronization
   invisible(TRUE)
+
 }
-
-
 
 ```
 
 
-
 ## Output
-
-This document provides a short version overview of the {syncdr} R package, demonstrating some of its key functionalities for synchronizing directories. {syncdr} offers a range of tools for managing file synchronization efficiently —this is just a small preview.\
-Since the code in the sample comes from an R package and isn't runnable on its own, this section serves as a practical example to showcase the functions in action without requiring you to run it yourself. For more details For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/).
-
 ### Installation
 
 To install {syncdr} from GitHub, use:
@@ -452,7 +478,8 @@ To install {syncdr} from GitHub, use:
 
 ```
 
-```{r loading}
+Given that I have {syncdr} already installed, I load it directly
+```{r }
 library(syncdr)
 ```
 
@@ -483,16 +510,31 @@ display_dir_tree(path_left  = left,
 
 *Step 1: Compare Directory Synchronization Status*
 
-We first check the differences between the two directories:
+First check the differences between the two directories, by date of modification
 
-```{r}
+```{r comp}
 compare_directories(left_path  = left,
                     right_path = right)
+
+# Save it in an object for further use 
+sync_status <- compare_directories(left_path  = left,
+                                   right_path = right)
 ```
 
-*Step 2: Perform Synchronization*
+*Step 2: Visualize directories' structure* 
 
-Now, we perform an asymmetric synchronization from left to right. This means files present in the left directory but missing in the right will be copied over, without modifying files in the left directory:
+```{r vis}
+
+display_sync_status(sync_status$common_files,
+                    left_path  = left,
+                    right_path = right)
+
+```
+
+
+*Step 3: Perform Synchronization*
+
+Perform an asymmetric synchronization from left to right. This means you have a master/leader directory (left), and you want changes made there to be reflected in a secondary/follower directory (right).
 
 ```{r}
 full_asym_sync_to_right(left_path   = left,
