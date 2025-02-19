@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Specifically, the functions showcased here are as follows:</p>
 <ul>
 <li><p><code>compare_directories()</code>, which inspects the synchronization status of files present in both directories as well as those exclusive to either directory</p></li>
-<li><p><code>display_sync_status()</code>, which allows to visualize the synchronization status in a nice DT Table</p></li>
+<li><p><code>display_sync_status()</code>, which allows to visualize the synchronization status in DT Table</p></li>
 <li><p><code>full_asym_sync_to_right()</code>, which allows to perform different actions such as copying, moving, and deleting files to keep directories synchronized depending on users needs</p></li>
 </ul>
 <div class="cell">
@@ -594,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy directories and initialize .syncdrenv</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>.syncdrenv <span class="ot">&lt;-</span> <span class="fu">toy_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■■■■■■■                   47% | ETA:  5s</code></pre>
+<pre><code>■■■■■■■■■                         27% | ETA:  9s</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>■■■■■■■■■■■■■■■■■■■               60% | ETA:  5s</code></pre>
@@ -608,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path_right =</span> right)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(←)Left directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/left
+C:/Users/wb621604/AppData/Local/Temp/RtmpwfMRO5/left
 ├── A
 │   ├── A1.Rds
 │   ├── A2.Rds
@@ -626,7 +626,7 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/left
 │   └── D2.Rds
 └── E
 (→)Right directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right
+C:/Users/wb621604/AppData/Local/Temp/RtmpwfMRO5/right
 ├── A
 ├── B
 │   ├── B1.Rds
@@ -658,10 +658,10 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right
 <pre><code>── Synchronization Summary ─────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/left'</code></pre>
+<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpwfMRO5/left'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right'</code></pre>
+<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpwfMRO5/right'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Total Common Files: 7</code></pre>
@@ -680,13 +680,13 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            path modification_time_left modification_time_right  modified
-1 /left/B/B1.Rds    2025-02-19 11:36:50     2025-02-19 11:36:51     right
-2 /left/B/B2.Rds    2025-02-19 11:36:53     2025-02-19 11:36:54     right
-3 /left/C/C1.Rds    2025-02-19 11:36:51     2025-02-19 11:36:51 same date
-4 /left/C/C2.Rds    2025-02-19 11:36:54     2025-02-19 11:36:55     right
-5 /left/C/C3.Rds    2025-02-19 11:36:56     2025-02-19 11:36:57     right
-6 /left/D/D1.Rds    2025-02-19 11:36:53     2025-02-19 11:36:52      left
-7 /left/D/D2.Rds    2025-02-19 11:36:56     2025-02-19 11:36:55      left</code></pre>
+1 /left/B/B1.Rds    2025-02-19 12:21:07     2025-02-19 12:21:08     right
+2 /left/B/B2.Rds    2025-02-19 12:21:10     2025-02-19 12:21:11     right
+3 /left/C/C1.Rds    2025-02-19 12:21:08     2025-02-19 12:21:08 same date
+4 /left/C/C2.Rds    2025-02-19 12:21:11     2025-02-19 12:21:12     right
+5 /left/C/C3.Rds    2025-02-19 12:21:13     2025-02-19 12:21:14     right
+6 /left/D/D1.Rds    2025-02-19 12:21:10     2025-02-19 12:21:09      left
+7 /left/D/D2.Rds    2025-02-19 12:21:13     2025-02-19 12:21:12      left</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -737,7 +737,7 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right
 <div class="cell-output-display">
 
 <div class="datatables html-widget html-fill-item" id="htmlwidget-66ae68e0399aa5849e19" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-66ae68e0399aa5849e19">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["2025-02-19T16:36:50Z","2025-02-19T16:36:53Z","2025-02-19T16:36:51Z","2025-02-19T16:36:54Z","2025-02-19T16:36:56Z","2025-02-19T16:36:53Z","2025-02-19T16:36:56Z"],["2025-02-19T16:36:51Z","2025-02-19T16:36:54Z","2025-02-19T16:36:51Z","2025-02-19T16:36:55Z","2025-02-19T16:36:57Z","2025-02-19T16:36:52Z","2025-02-19T16:36:55Z"],[false,false,false,false,false,true,true],[true,true,false,true,true,false,false],["older in left, newer in right dir","older in left, newer in right dir","same date","older in left, newer in right dir","older in left, newer in right dir","newer in left, older in right dir","newer in left, older in right dir"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>path_left<\/th>\n      <th>path_right<\/th>\n      <th>modification_time_left<\/th>\n      <th>modification_time_right<\/th>\n      <th>is_new_left<\/th>\n      <th>is_new_right<\/th>\n      <th>sync_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"targets":[5,6],"createdCell":"function(td, cellData, rowData, row, col) {\n                            if (cellData === true) {\n                              $(td).css({'background-color': '#F8F4FF'});\n                            } else {\n                              $(td).css({'background-color': '#F0F8FF'});\n                            }\n                          }"},{"targets":7,"createdCell":"function(td, cellData, rowData, row, col) {\n                             if (cellData.includes('different content') ||\n                                 cellData.includes('same date') ||\n                                 cellData.includes('only in right')) {\n                              $(td).css({'background-color': '#a9def9'});\n                            } else {\n                              $(td).css({'background-color': '#e4c1f9'});\n                            }\n                          }"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"path_left","targets":1},{"name":"path_right","targets":2},{"name":"modification_time_left","targets":3},{"name":"modification_time_right","targets":4},{"name":"is_new_left","targets":5},{"name":"is_new_right","targets":6},{"name":"sync_status","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.createdCell","options.columnDefs.1.createdCell"],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-66ae68e0399aa5849e19">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["2025-02-19T17:21:07Z","2025-02-19T17:21:10Z","2025-02-19T17:21:08Z","2025-02-19T17:21:11Z","2025-02-19T17:21:13Z","2025-02-19T17:21:10Z","2025-02-19T17:21:13Z"],["2025-02-19T17:21:08Z","2025-02-19T17:21:11Z","2025-02-19T17:21:08Z","2025-02-19T17:21:12Z","2025-02-19T17:21:14Z","2025-02-19T17:21:09Z","2025-02-19T17:21:12Z"],[false,false,false,false,false,true,true],[true,true,false,true,true,false,false],["older in left, newer in right dir","older in left, newer in right dir","same date","older in left, newer in right dir","older in left, newer in right dir","newer in left, older in right dir","newer in left, older in right dir"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>path_left<\/th>\n      <th>path_right<\/th>\n      <th>modification_time_left<\/th>\n      <th>modification_time_right<\/th>\n      <th>is_new_left<\/th>\n      <th>is_new_right<\/th>\n      <th>sync_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"targets":[5,6],"createdCell":"function(td, cellData, rowData, row, col) {\n                            if (cellData === true) {\n                              $(td).css({'background-color': '#F8F4FF'});\n                            } else {\n                              $(td).css({'background-color': '#F0F8FF'});\n                            }\n                          }"},{"targets":7,"createdCell":"function(td, cellData, rowData, row, col) {\n                             if (cellData.includes('different content') ||\n                                 cellData.includes('same date') ||\n                                 cellData.includes('only in right')) {\n                              $(td).css({'background-color': '#a9def9'});\n                            } else {\n                              $(td).css({'background-color': '#e4c1f9'});\n                            }\n                          }"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"path_left","targets":1},{"name":"path_right","targets":2},{"name":"modification_time_left","targets":3},{"name":"modification_time_right","targets":4},{"name":"is_new_left","targets":5},{"name":"is_new_right","targets":6},{"name":"sync_status","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.createdCell","options.columnDefs.1.createdCell"],"jsHooks":[]}</script>
 </div>
 </div>
 <p><em>Step 3: Perform Synchronization</em></p>

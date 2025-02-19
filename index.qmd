@@ -23,7 +23,7 @@ Specifically, the functions showcased here are as follows:
 
 -   `compare_directories()`, which inspects the synchronization status of files present in both directories as well as those exclusive to either directory
 
--   `display_sync_status()`, which allows to visualize the synchronization status in a nice DT Table
+-   `display_sync_status()`, which allows to visualize the synchronization status in DT Table
 
 -   `full_asym_sync_to_right()`, which allows to perform different actions such as copying, moving, and deleting files to keep directories synchronized depending on users needs
 
