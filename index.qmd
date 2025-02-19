@@ -1,5 +1,5 @@
 ---
-title: "Introduction to {syncdr}"
+title: "ET Consultant Application - (DECID)"
 format:
   html:
     code-fold: false
@@ -7,16 +7,25 @@ format:
     code-overflow: wrap
     code-width: 170
 author: "Rossana Tatulli"
-date: "2025-02-18"
+date: "2025-02-19"
 editor: visual
 ---
 
-# ET Consultant Application - (DECID)
+# Introduction to {syncdr}
 
 ## Coding sample
 
-The code provided below is extracted from an R package -{syncdr}- I developed to facilitate file handling, directory comparison, and synchronization.
-Please note that this document offers a brief overview of the {syncdr} R package, highlighting some of its key functionalities for directory synchronization. {syncdr} includes a wide range of tools designed to manage file synchronization efficiently. Since the code in this sample is not runnable on its own, this document also includes an "Output" section, which serves as a practical example to demonstrate the functions in action without requiring you to run the code yourself. For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/), which I developed alongside the package itself. 
+The code provided below is extracted from an R package called {syncdr}, which I developed with the aim of optimizing file handling, directory comparison and synchronization in R. By incorporating {syncdr} into their workflow, users can achieve a more organized and up-to-date file system, simplifying the overall management and synchronization of directories.
+
+This page includes the back-end code and the corresponding output of some of its key functions. In fact since the back-end code is not runnable on its own, the "Output" section serves as a practical example to demonstrate the functions in action without requiring you to run it yourself. For more details, visit the [official {syncdr} website](https://rossanatat.github.io/syncdr/), which I developed alongside the package itself.
+
+Specifically, the functions showcased here are as follows:
+
+-   `compare_directories()`, which inspects the synchronization status of files present in both directories as well as those exclusive to either directory
+
+-   `display_sync_status()`, which allows to visualize the synchronization status in a nice DT Table
+
+-   `full_asym_sync_to_right()`, which allows to perform different actions such as copying, moving, and deleting files to keep directories synchronized depending on users needs
 
 ```{r, eval=FALSE}
 
@@ -232,7 +241,6 @@ display_sync_status <- function(sync_status_files,
 }
 
 ```
-
 
 ```{r, eval=FALSE}
 
@@ -467,8 +475,8 @@ full_asym_sync_to_right <- function(left_path   = NULL,
 
 ```
 
-
 ## Output
+
 ### Installation
 
 To install {syncdr} from GitHub, use:
@@ -479,6 +487,7 @@ To install {syncdr} from GitHub, use:
 ```
 
 Given that I have {syncdr} already installed, I load it directly
+
 ```{r }
 library(syncdr)
 ```
@@ -521,7 +530,7 @@ sync_status <- compare_directories(left_path  = left,
                                    right_path = right)
 ```
 
-*Step 2: Visualize directories' structure* 
+*Step 2: Visualize directories' structure*
 
 ```{r vis}
 
@@ -530,7 +539,6 @@ display_sync_status(sync_status$common_files,
                     right_path = right)
 
 ```
-
 
 *Step 3: Perform Synchronization*
 
@@ -544,4 +552,5 @@ full_asym_sync_to_right(left_path   = left,
 ```
 
 ## Additional comments
-I believe this script is a good representation of coding that adheres to highest standards of quality: it is structured with lower-level functions that handle file metadata extraction, content hashing, and structured joins, making the backend complex but ensuring clear, user-friendly output. Also, the functions provide detailed, well-structured documentation and customizable options, allowing users to tailor the comparison process while maintaining clarity on the actions being performed. With built-in messaging and verbosity controls, users remain informed throughout execution. The script reflects strong attention to detail, balancing efficiency with usability, and is part of a broader effort to improve the backend pipeline of the Poverty and Inequality Platform (PIP). Its modularity and clarity also make it easy to extend and adapt for future development with other developers in a continuous development environment. 
+
+I believe this script to be a good representation of coding that adheres to highest standards of quality: it is built upon lower-level functions that handle file metadata extraction, content hashing, and data joins, making the back-end well structured while ensuring clear, user-friendly output. Also, the functions provide detailed documentation and customization options, allowing users to tailor the comparison process while maintaining clarity on the actions being performed. With built-in messaging and verbosity controls, users remain informed throughout execution. The script reflects strong attention to detail, balancing efficiency with usability, and is part of a broader effort to improve the back-end pipeline of the Poverty and Inequality Platform (PIP). Its structure also make it easy to extend and adapt for future modifications with other developers in a continuous development environment.

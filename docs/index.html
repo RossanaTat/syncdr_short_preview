@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rossana Tatulli">
-<meta name="dcterms.date" content="2025-02-18">
+<meta name="dcterms.date" content="2025-02-19">
 
-<title>Introduction to {syncdr}</title>
+<title>ET Consultant Application - (DECID)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,7 +92,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction to {syncdr}</h1>
+<h1 class="title">ET Consultant Application - (DECID)</h1>
 </div>
 
 
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 18, 2025</p>
+      <p class="date">February 19, 2025</p>
     </div>
   </div>
   
@@ -119,11 +119,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="et-consultant-application---decid" class="level1">
-<h1>ET Consultant Application - (DECID)</h1>
+<section id="introduction-to-syncdr" class="level1">
+<h1>Introduction to {syncdr}</h1>
 <section id="coding-sample" class="level2">
 <h2 class="anchored" data-anchor-id="coding-sample">Coding sample</h2>
-<p>The code provided below is extracted from an R package -{syncdr}- I developed to facilitate file handling, directory comparison, and synchronization. Please note that this document offers a brief overview of the {syncdr} R package, highlighting some of its key functionalities for directory synchronization. {syncdr} includes a wide range of tools designed to manage file synchronization efficiently. Since the code in this sample is not runnable on its own, this document also includes an “Output” section, which serves as a practical example to demonstrate the functions in action without requiring you to run the code yourself. For more details, visit the <a href="https://rossanatat.github.io/syncdr/">official {syncdr} website</a>, which I developed alongside the package itself.</p>
+<p>The code provided below is extracted from an R package called {syncdr}, which I developed with the aim of optimizing file handling, directory comparison and synchronization in R. By incorporating {syncdr} into their workflow, users can achieve a more organized and up-to-date file system, simplifying the overall management and synchronization of directories.</p>
+<p>This page includes the back-end code and the corresponding output of some of its key functions. In fact since the back-end code is not runnable on its own, the “Output” section serves as a practical example to demonstrate the functions in action without requiring you to run it yourself. For more details, visit the <a href="https://rossanatat.github.io/syncdr/">official {syncdr} website</a>, which I developed alongside the package itself.</p>
+<p>Specifically, the functions showcased here are as follows:</p>
+<ul>
+<li><p><code>compare_directories()</code>, which inspects the synchronization status of files present in both directories as well as those exclusive to either directory</p></li>
+<li><p><code>display_sync_status()</code>, which allows to visualize the synchronization status in a nice DT Table</p></li>
+<li><p><code>full_asym_sync_to_right()</code>, which allows to perform different actions such as copying, moving, and deleting files to keep directories synchronized depending on users needs</p></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Compare Two Directories for Synchronization Status</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
@@ -587,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy directories and initialize .syncdrenv</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>.syncdrenv <span class="ot">&lt;-</span> <span class="fu">toy_dirs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>■■■■■■■■■                         27% | ETA:  9s</code></pre>
+<pre><code>■■■■■■■■■■■■■■■                   47% | ETA:  5s</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>■■■■■■■■■■■■■■■■■■■               60% | ETA:  5s</code></pre>
@@ -601,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path_right =</span> right)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(←)Left directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/left
+C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/left
 ├── A
 │   ├── A1.Rds
 │   ├── A2.Rds
@@ -619,7 +626,7 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/left
 │   └── D2.Rds
 └── E
 (→)Right directory structure:
-C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/right
+C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right
 ├── A
 ├── B
 │   ├── B1.Rds
@@ -651,10 +658,10 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/right
 <pre><code>── Synchronization Summary ─────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/left'</code></pre>
+<pre><code>• Left Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/left'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/right'</code></pre>
+<pre><code>• Right Directory: 'C:/Users/wb621604/AppData/Local/Temp/RtmpkTPAGX/right'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>• Total Common Files: 7</code></pre>
@@ -673,13 +680,13 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/right
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            path modification_time_left modification_time_right  modified
-1 /left/B/B1.Rds    2025-02-18 13:59:13     2025-02-18 13:59:14     right
-2 /left/B/B2.Rds    2025-02-18 13:59:16     2025-02-18 13:59:17     right
-3 /left/C/C1.Rds    2025-02-18 13:59:14     2025-02-18 13:59:14 same date
-4 /left/C/C2.Rds    2025-02-18 13:59:17     2025-02-18 13:59:18     right
-5 /left/C/C3.Rds    2025-02-18 13:59:19     2025-02-18 13:59:20     right
-6 /left/D/D1.Rds    2025-02-18 13:59:16     2025-02-18 13:59:15      left
-7 /left/D/D2.Rds    2025-02-18 13:59:19     2025-02-18 13:59:18      left</code></pre>
+1 /left/B/B1.Rds    2025-02-19 11:36:50     2025-02-19 11:36:51     right
+2 /left/B/B2.Rds    2025-02-19 11:36:53     2025-02-19 11:36:54     right
+3 /left/C/C1.Rds    2025-02-19 11:36:51     2025-02-19 11:36:51 same date
+4 /left/C/C2.Rds    2025-02-19 11:36:54     2025-02-19 11:36:55     right
+5 /left/C/C3.Rds    2025-02-19 11:36:56     2025-02-19 11:36:57     right
+6 /left/D/D1.Rds    2025-02-19 11:36:53     2025-02-19 11:36:52      left
+7 /left/D/D2.Rds    2025-02-19 11:36:56     2025-02-19 11:36:55      left</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
@@ -730,7 +737,7 @@ C:/Users/wb621604/AppData/Local/Temp/RtmpwNV7Sn/right
 <div class="cell-output-display">
 
 <div class="datatables html-widget html-fill-item" id="htmlwidget-66ae68e0399aa5849e19" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-66ae68e0399aa5849e19">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["2025-02-18T18:59:13Z","2025-02-18T18:59:16Z","2025-02-18T18:59:14Z","2025-02-18T18:59:17Z","2025-02-18T18:59:19Z","2025-02-18T18:59:16Z","2025-02-18T18:59:19Z"],["2025-02-18T18:59:14Z","2025-02-18T18:59:17Z","2025-02-18T18:59:14Z","2025-02-18T18:59:18Z","2025-02-18T18:59:20Z","2025-02-18T18:59:15Z","2025-02-18T18:59:18Z"],[false,false,false,false,false,true,true],[true,true,false,true,true,false,false],["older in left, newer in right dir","older in left, newer in right dir","same date","older in left, newer in right dir","older in left, newer in right dir","newer in left, older in right dir","newer in left, older in right dir"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>path_left<\/th>\n      <th>path_right<\/th>\n      <th>modification_time_left<\/th>\n      <th>modification_time_right<\/th>\n      <th>is_new_left<\/th>\n      <th>is_new_right<\/th>\n      <th>sync_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"targets":[5,6],"createdCell":"function(td, cellData, rowData, row, col) {\n                            if (cellData === true) {\n                              $(td).css({'background-color': '#F8F4FF'});\n                            } else {\n                              $(td).css({'background-color': '#F0F8FF'});\n                            }\n                          }"},{"targets":7,"createdCell":"function(td, cellData, rowData, row, col) {\n                             if (cellData.includes('different content') ||\n                                 cellData.includes('same date') ||\n                                 cellData.includes('only in right')) {\n                              $(td).css({'background-color': '#a9def9'});\n                            } else {\n                              $(td).css({'background-color': '#e4c1f9'});\n                            }\n                          }"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"path_left","targets":1},{"name":"path_right","targets":2},{"name":"modification_time_left","targets":3},{"name":"modification_time_right","targets":4},{"name":"is_new_left","targets":5},{"name":"is_new_right","targets":6},{"name":"sync_status","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.createdCell","options.columnDefs.1.createdCell"],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-66ae68e0399aa5849e19">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["/B/B1.Rds","/B/B2.Rds","/C/C1.Rds","/C/C2.Rds","/C/C3.Rds","/D/D1.Rds","/D/D2.Rds"],["2025-02-19T16:36:50Z","2025-02-19T16:36:53Z","2025-02-19T16:36:51Z","2025-02-19T16:36:54Z","2025-02-19T16:36:56Z","2025-02-19T16:36:53Z","2025-02-19T16:36:56Z"],["2025-02-19T16:36:51Z","2025-02-19T16:36:54Z","2025-02-19T16:36:51Z","2025-02-19T16:36:55Z","2025-02-19T16:36:57Z","2025-02-19T16:36:52Z","2025-02-19T16:36:55Z"],[false,false,false,false,false,true,true],[true,true,false,true,true,false,false],["older in left, newer in right dir","older in left, newer in right dir","same date","older in left, newer in right dir","older in left, newer in right dir","newer in left, older in right dir","newer in left, older in right dir"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>path_left<\/th>\n      <th>path_right<\/th>\n      <th>modification_time_left<\/th>\n      <th>modification_time_right<\/th>\n      <th>is_new_left<\/th>\n      <th>is_new_right<\/th>\n      <th>sync_status<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"targets":[5,6],"createdCell":"function(td, cellData, rowData, row, col) {\n                            if (cellData === true) {\n                              $(td).css({'background-color': '#F8F4FF'});\n                            } else {\n                              $(td).css({'background-color': '#F0F8FF'});\n                            }\n                          }"},{"targets":7,"createdCell":"function(td, cellData, rowData, row, col) {\n                             if (cellData.includes('different content') ||\n                                 cellData.includes('same date') ||\n                                 cellData.includes('only in right')) {\n                              $(td).css({'background-color': '#a9def9'});\n                            } else {\n                              $(td).css({'background-color': '#e4c1f9'});\n                            }\n                          }"},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"path_left","targets":1},{"name":"path_right","targets":2},{"name":"modification_time_left","targets":3},{"name":"modification_time_right","targets":4},{"name":"is_new_left","targets":5},{"name":"is_new_right","targets":6},{"name":"sync_status","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.createdCell","options.columnDefs.1.createdCell"],"jsHooks":[]}</script>
 </div>
 </div>
 <p><em>Step 3: Perform Synchronization</em></p>
@@ -769,7 +776,7 @@ Do you want to proceed? Type your answer (Yes/no/cancel)
 </section>
 <section id="additional-comments" class="level2">
 <h2 class="anchored" data-anchor-id="additional-comments">Additional comments</h2>
-<p>I believe this script is a good representation of coding that adheres to highest standards of quality: it is structured with lower-level functions that handle file metadata extraction, content hashing, and structured joins, making the backend complex but ensuring clear, user-friendly output. Also, the functions provide detailed, well-structured documentation and customizable options, allowing users to tailor the comparison process while maintaining clarity on the actions being performed. With built-in messaging and verbosity controls, users remain informed throughout execution. The script reflects strong attention to detail, balancing efficiency with usability, and is part of a broader effort to improve the backend pipeline of the Poverty and Inequality Platform (PIP). Its modularity and clarity also make it easy to extend and adapt for future development with other developers in a continuous development environment.</p>
+<p>I believe this script to be a good representation of coding that adheres to highest standards of quality: it is built upon lower-level functions that handle file metadata extraction, content hashing, and data joins, making the back-end well structured while ensuring clear, user-friendly output. Also, the functions provide detailed documentation and customization options, allowing users to tailor the comparison process while maintaining clarity on the actions being performed. With built-in messaging and verbosity controls, users remain informed throughout execution. The script reflects strong attention to detail, balancing efficiency with usability, and is part of a broader effort to improve the back-end pipeline of the Poverty and Inequality Platform (PIP). Its structure also make it easy to extend and adapt for future modifications with other developers in a continuous development environment.</p>
 </section>
 </section>
 
